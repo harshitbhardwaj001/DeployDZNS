@@ -33,17 +33,17 @@ const Navbar = ({ clicked, setClicked }) => {
       showLoginModal: true,
     });
   };
-  useEffect(() => {
-    if (router.pathname === "/shop") {
-      const positionNavbar = () => {
-        window.pageYOffset > 0 ? setIsFixed(true) : setIsFixed(false);
-      };
-      window.addEventListener("scroll", positionNavbar);
-      return () => window.removeEventListener("scroll", positionNavbar);
-    } else {
-      setIsFixed(false);
-    }
-  }, [router.pathname]);
+  // useEffect(() => {
+  //   if (router.pathname === "/shop") {
+  //     const positionNavbar = () => {
+  //       window.pageYOffset > 0 ? setIsFixed(true) : setIsFixed(false);
+  //     };
+  //     window.addEventListener("scroll", positionNavbar);
+  //     return () => window.removeEventListener("scroll", positionNavbar);
+  //   } else {
+  //     setIsFixed(false);
+  //   }
+  // }, [router.pathname]);
 
   useEffect(() => {
     const tl = gsap.timeline({ paused: true });

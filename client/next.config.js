@@ -2,8 +2,14 @@ const withTM = require("next-transpile-modules")(["gsap"]);
 
 module.exports = withTM({
   images: {
-    protocol: "https",
-    domains: ["**"],
-    pathname: "**",
+    // Use an array of objects with hostname property
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+        port: "",
+        pathname: "**"
+      },
+    ],
   },
 });

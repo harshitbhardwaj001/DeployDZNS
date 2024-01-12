@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export const HeroSection = () => {
   const circleRef = useRef();
-  const text = "Graphics • Video Editing • UI/UX • Photography • SEO •";
+  const text = "Graphics • Video Editing • UI/UX • Photography • SMM •";
   // useEffect(() => {
   //   console.log("Trying to initialize circletype");
   //   if (circleRef.current) {

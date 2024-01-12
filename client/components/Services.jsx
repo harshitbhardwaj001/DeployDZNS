@@ -46,10 +46,10 @@ const Services = () => {
           <li
             key={name}
             className="relative z-[5] cursor-pointer"
-            onClick={() =>
-              name !== "PACKAGE" &&
-              router.push(`/search?q=${""}&category=${name.toLowerCase()} `)
-            }
+            // onClick={() =>
+            //   name !== "PACKAGE" &&
+            //   router.push(`/search?q=${""}&category=${name.toLowerCase()} `)
+            // }
           >
             <div className="absolute z-10 text-white left-5 top-4 xs:max-md:left-3">
               <span className="text-[1.2rem] xs:max-md:text-[0.6rem]">
@@ -59,6 +59,7 @@ const Services = () => {
                 {name}
               </h6>
             </div>
+
             {name === "PACKAGE" && (
               <>
                 <div className="absolute z-10 right-5 text-xl font-bold top-[21rem] xs:max-md:text-[1.1em] xs:max-md:top-[7rem] xs:max-md:right-2">
@@ -66,6 +67,16 @@ const Services = () => {
                 </div>
                 <div className="absolute z-10 right-5 text-xl font-medium top-[22.5rem] xs:max-md:text-[1.1em] xs:max-md:top-[8rem] xs:max-md:right-[0.7rem]">
                   16-01-24
+                </div>
+              </>
+            )}
+            {name !== "PACKAGE" && (
+              <>
+                <div className="absolute z-10 right-5 text-xl font-bold top-[21rem] xs:max-md:text-[1.1em] xs:max-md:top-[7rem] xs:max-md:right-2">
+                  Available
+                </div>
+                <div className="absolute z-10 right-5 text-xl font-medium top-[22.5rem] xs:max-md:text-[1.1em] xs:max-md:top-[8rem] xs:max-md:right-[0.7rem]">
+                  Tommorrow
                 </div>
               </>
             )}

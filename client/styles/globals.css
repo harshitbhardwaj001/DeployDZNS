@@ -1017,4 +1017,8 @@
     width: 100vw;
     overflow: hidden;
   }
+
+  .overlay svg {
+    width: 100vh;
+  }
 }

@@ -77,12 +77,12 @@ export const getUserInfo = async (req, res, next) => {
           id: req.userId,
         },
       });
-      delete user.password;
+      // delete user.password;
       return res.status(200).json({ user });
     }
   } catch (err) {
     console.log(err);
-    return res.status(500).send("Internal Srver Error.");
+    return res.status(500).send("Internal Server Error.");
   }
 };
 

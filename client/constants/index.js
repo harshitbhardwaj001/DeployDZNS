@@ -5,11 +5,7 @@ const experiences = [
     // icon: starbucks,
     // iconBg: "#383E56",
     // date: "March 2020 - April 2021",
-    points: [
-      "Choose the category of service from the 'our work' webpage",
-      // "Private Discord is launched.",
-      // "Early supporters of our content are sent a DM inviting them to our Discord to claim a Citizen Role. 1 Citizen Role = 1 guaranteed Citizen Pass mint.",
-    ],
+    points: ["Choose the category of service from 'our shop'"],
   },
   {
     title: "Step 2",
@@ -33,7 +29,7 @@ const experiences = [
     // icon: meta,
     iconBg: "#E6DEDD",
     date: "",
-    points: ["Pay advance of Rs.500 via UPI or bank transfer"],
+    points: ["Pay advance of Rs.500 via one of the payment methods available."],
   },
   {
     title: "Step 5",

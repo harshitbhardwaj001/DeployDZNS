@@ -15,7 +15,7 @@ const ExperienceCard = ({ experience }) => (
   <VerticalTimelineElement
     contentStyle={{
       background: "#F4FF00",
-      opacity: 0.6,
+
       color: "#000",
     }}
     // contentArrowStyle={{ borderRight: '7px solid #232631' }}
@@ -54,7 +54,10 @@ const ExperienceCard = ({ experience }) => (
 const Steps = () => {
   return (
     <>
-      <motion.div variants={textVariant()} className="mt-[120px] xs:max-md:mt-[20px]">
+      <motion.div
+        variants={textVariant()}
+        className="mt-[120px] xs:max-md:mt-[20px]"
+      >
         <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider text-center">
           Do you want to know
         </p>
