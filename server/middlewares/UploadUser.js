@@ -13,19 +13,19 @@ const client = new S3Client({
   },
 });
 
-const uploadUserMiddleware = async (req, res, next) => {
+const uploadUserMiddleware = (fieldName) => (req, res, next) => {
   const form = new multiparty.Form();
 
-  try {
-    const { fields, files } = await new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) reject(err);
-        resolve({ fields, files });
-      });
-    });
+  form.parse(req, async (err, fields, files) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+    }
 
-    const links = await Promise.all(
-      files.file.map(async (file) => {
+    const links = [];
+
+    for (const file of files[fieldName]) {
+      try {
         const ext = file.originalFilename.split(".").pop();
         const newFilename = Date.now() + "." + ext;
 
@@ -40,17 +40,18 @@ const uploadUserMiddleware = async (req, res, next) => {
         );
 
         const link = `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
-        console.log(link);
-        return link;
-      })
-    );
+        links.push(link);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal Server Error");
+      }
+    }
 
-    req.s3Links = links; // Add the S3 links to the request object
+    // Attach the links to the request object
+    req.s3Links = links;
+
     next();
-  } catch (error) {
-    console.error("Error uploading files to S3:", error);
-    res.status(500).send("Internal Server Error.");
-  }
+  });
 };
 
 export default uploadUserMiddleware;

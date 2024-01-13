@@ -7,7 +7,7 @@ import {
   setUserImage,
 } from "../controllers/AuthControllers.js";
 import { verifyToken } from "../middlewares/AuthMiddleware.js";
-import { uploadUserMiddleware } from "../middlewares/UploadUser.js";
+import uploadUserMiddleware from "../middlewares/UploadUser.js";
 
 const authRoutes = Router();
 

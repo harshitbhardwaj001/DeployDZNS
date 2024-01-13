@@ -8,7 +8,7 @@ import {
   searchServices,
 } from "../controllers/ServicesControllers.js";
 import { Router } from "express";
-import { uploadUserMiddleware } from "../middlewares/UploadUser.js";
+import uploadUserMiddleware from "../middlewares/UploadUser.js";
 
 export const servicesRoutes = Router();
 
