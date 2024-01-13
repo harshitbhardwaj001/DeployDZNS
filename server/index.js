@@ -12,7 +12,7 @@ import { dashboardRoutes } from "./routes/DashboardRoutes.js";
 config();
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 9001;
 
 app.use(
   cors({
