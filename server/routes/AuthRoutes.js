@@ -8,7 +8,7 @@ import {
 } from "../controllers/AuthControllers.js";
 import { verifyToken } from "../middlewares/AuthMiddleware.js";
 
-import multer from "multer";
+// import multer from "multer";
 
 const authRoutes = Router();
 
