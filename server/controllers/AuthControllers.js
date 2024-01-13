@@ -133,7 +133,7 @@ export const setUserImage = async (req, res, next) => {
     if (req.file) {
       if (req.userId) {
         const date = Date.now();
-        let fileName = "/temp/uploads/profiles/" + date + req.file.originalname;
+        let fileName = "/tmp/uploads/profiles/" + date + req.file.originalname;
         renameSync(req.file.path, fileName);
         const prisma = new PrismaClient();
         await prisma.user.update({
