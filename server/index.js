@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import cors from "cors";
 import authRoutes from "./routes/AuthRoutes.js";
 import cookieParser from "cookie-parser";
+import { globalOptionsMiddleware } from "./middlewares/GlobalOptionsMiddleware.js";
 import { servicesRoutes } from "./routes/ServicesRoutes.js";
 import { ordersRoutes } from "./routes/OrderRoutes.js";
 import { messageRoutes } from "./routes/MessageRoutes.js";
@@ -26,6 +27,8 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(cookieParser());
 app.use(json());
+
+app.use(globalOptionsMiddleware);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/services", servicesRoutes);
