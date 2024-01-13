@@ -11,7 +11,7 @@ import { Router } from "express";
 
 export const servicesRoutes = Router();
 
-const upload = multer({ dest: "uploads/" });
+// const upload = multer({ dest: "uploads/" });
 
 servicesRoutes.post("/add", verifyToken, upload.array("images"), addServices);
 servicesRoutes.get("/get-user-services", verifyToken, getUserAuthServices);
