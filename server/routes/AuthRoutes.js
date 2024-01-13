@@ -5,7 +5,7 @@ import {
   getUserInfo,
   setUserInfo,
   setUserImage,
-} from "../controllers/aUTHcONTROLLERS.js";
+} from "../controllers/AuthControllers.js";
 import { verifyToken } from "../middlewares/AuthMiddleware.js";
 
 import multer from "multer";
