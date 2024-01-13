@@ -57,7 +57,7 @@ const Details = () => {
           <div className="flex flex-col gap-4">
             <div className="max-h-[1000px] max-w-[1000px] overflow-hidden z-[10]">
               <Image
-                src={HOST + "/uploads/" + currentImage}
+                src={currentImage}
                 alt="Service"
                 width={1000}
                 height={500}
@@ -68,7 +68,7 @@ const Details = () => {
               {serviceData.images.length > 1 &&
                 serviceData.images.map((image) => (
                   <Image
-                    src={HOST + "/uploads/" + image}
+                    src={image}
                     alt="Service"
                     height={100}
                     width={100}

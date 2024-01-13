@@ -16,7 +16,7 @@ const SearchGridItem = ({ service }) => {
     >
       <div className="relative w-64 h-40 ">
         <Image
-          src={`${HOST}/uploads/${service.images[0]}`}
+          src={service.images[0]}
           alt="service"
           fill
           className="rounded-xl"

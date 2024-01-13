@@ -34,13 +34,7 @@ const index = () => {
     console.log(userInfo?.imageName);
 
     if (userInfo?.imageName) {
-      const fileName = image;
-      fetch(userInfo.imageName).then(async (response) => {
-        const contentType = response.headers.get("content-type");
-        const blob = await response.blob();
-        const files = new File([blob], fileName, { contentType });
-        setImage(files);
-      });
+      setImage(userInfo.imageName);
     }
 
     setData(handleData);
@@ -89,12 +83,13 @@ const index = () => {
           });
           imageName = img;
         }
+        setImage(imageName);
         dispatch({
           type: reducerCases.SET_USER,
           userInfo: {
             ...userInfo,
             ...data,
-            image: imageName.length ? HOST + "/" + imageName : false,
+            image: imageName.length ? imageName : false,
           },
         });
       }
@@ -145,7 +140,7 @@ const index = () => {
                 <div className="bg-purple-500 h-36 w-36 flex items-center justify-center rounded-full relative visible xs:max-md:text-sm xs:max-md:ml-[1.3rem]">
                   {image ? (
                     <Image
-                      src={URL.createObjectURL(image)}
+                      src={image}
                       alt="Profile"
                       fill
                       className="rounded-full"

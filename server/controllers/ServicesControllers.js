@@ -7,12 +7,7 @@ export const addServices = async (req, res, next) => {
       const fileKeys = Object.keys(req.files);
       const fileNames = [];
       fileKeys.forEach((file) => {
-        const date = Date.now();
-        renameSync(
-          req.files[file].path,
-          "uploads/" + date + req.files[file].originalname
-        );
-        fileNames.push(date + req.files[file].originalname);
+        fileNames.push(req.s3Link);
       });
       if (req.query) {
         const {
@@ -94,12 +89,7 @@ export const editService = async (req, res, next) => {
       const fileKeys = Object.keys(req.files);
       const fileNames = [];
       fileKeys.forEach((file) => {
-        const date = Date.now();
-        renameSync(
-          req.files[file].path,
-          "uploads/" + date + req.files[file].originalname
-        );
-        fileNames.push(date + req.files[file].originalname);
+        fileNames.push(req.s3Link);
       });
       if (req.query) {
         const {
