@@ -1,6 +1,7 @@
 import { S3Client } from "@aws-sdk/client-s3";
 import { PrismaClient } from "@prisma/client";
 import { existsSync, renameSync, unlinkSync } from "fs";
+import fs from "fs";
 
 const bucketName = "dzns-ecommerce";
 
