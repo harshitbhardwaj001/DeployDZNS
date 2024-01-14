@@ -1,4 +1,4 @@
-import { S3Client } from "@aws-sdk/client-s3";
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { PrismaClient } from "@prisma/client";
 import { existsSync, renameSync, unlinkSync } from "fs";
 import fs from "fs";
@@ -15,7 +15,7 @@ const s3Client = new S3Client({
 
 export const addServices = async (req, res, next) => {
   try {
-    if (req.files) {
+    if (req.files && req.userId) {
       const fileKeys = Object.keys(req.files);
       const fileNames = [];
 
