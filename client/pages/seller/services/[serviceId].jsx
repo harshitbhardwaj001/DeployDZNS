@@ -107,7 +107,7 @@ const create = () => {
         setFeatures(service.features);
 
         service.images.forEach((image) => {
-          const url = HOST + "/uploads/" + image;
+          const url = image;
           const fileName = image;
           fetch(url).then(async (response) => {
             const contentType = response.headers.get("content-type");

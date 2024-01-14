@@ -33,8 +33,8 @@ export const addServices = async (req, res, next) => {
                 Bucket: bucketName,
                 Key: newFilename,
                 Body: file.buffer,
-                ContentType: file.mimetype,
                 ACL: "public-read",
+                ContentType: file.mimetype,
               })
             );
 
