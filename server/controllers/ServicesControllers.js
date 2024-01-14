@@ -24,17 +24,21 @@ export const addServices = async (req, res, next) => {
           const ext = file.originalname.split(".").pop();
           const newFilename = Date.now() + "." + ext;
 
-          await s3Client.send(
-            new PutObjectCommand({
-              Bucket: bucketName,
-              Key: newFilename,
-              Body: fs.readFileSync(file.path),
-              ContentType: mime.lookup(file.path),
-              ACL: "public-read",
-            })
-          );
+          try {
+            await s3Client.send(
+              new PutObjectCommand({
+                Bucket: bucketName,
+                Key: newFilename,
+                Body: fs.readFileSync(file.path),
+                ContentType: mime.lookup(file.path),
+                ACL: "public-read",
+              })
+            );
 
-          return `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
+            return `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
+          } catch (err) {
+            console.log(err);
+          }
         })
       );
 
