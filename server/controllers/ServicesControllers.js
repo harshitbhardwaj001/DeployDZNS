@@ -4,10 +4,10 @@ import { existsSync, renameSync, unlinkSync } from "fs";
 export const addServices = async (req, res, next) => {
   try {
     if (req.files) {
-      const fileKeys = Object.keys(req.files);
+      const fileKeys = Object.keys(req.file);
       const fileNames = [];
       fileKeys.forEach((file) => {
-        fileNames.push(req.s3Link);
+        fileNames.push(req.s3Link[file]);
       });
       if (req.query) {
         const {
@@ -86,10 +86,10 @@ export const getServiceData = async (req, res, next) => {
 export const editService = async (req, res, next) => {
   try {
     if (req.files) {
-      const fileKeys = Object.keys(req.files);
+      const fileKeys = Object.keys(req.file);
       const fileNames = [];
       fileKeys.forEach((file) => {
-        fileNames.push(req.s3Link);
+        fileNames.push(req.s3Link[file]);
       });
       if (req.query) {
         const {

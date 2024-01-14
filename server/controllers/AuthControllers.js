@@ -137,7 +137,7 @@ export const setUserImage = async (req, res, next) => {
         // Update the user profile with the S3 link directly
         await prisma.user.update({
           where: { id: req.userId },
-          data: { profileImage: req.s3Link },
+          data: { profileImage: req.s3Link[req.file] },
         });
 
         // Return the S3 link in the response
