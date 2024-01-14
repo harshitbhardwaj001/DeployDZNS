@@ -56,6 +56,8 @@ export const addServices = async (req, res, next) => {
           shortDesc,
         } = req.query;
 
+        const prisma = new PrismaClient();
+
         await prisma.services.create({
           data: {
             title,
