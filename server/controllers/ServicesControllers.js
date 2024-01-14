@@ -28,8 +28,8 @@ export const addServices = async (req, res, next) => {
             new PutObjectCommand({
               Bucket: bucketName,
               Key: newFilename,
-              Body: file.buffer,
-              ContentType: file.mimetype,
+              Body: fs.readFileSync(file.path),
+              ContentType: mime.lookup(file.path),
               ACL: "public-read",
             })
           );
