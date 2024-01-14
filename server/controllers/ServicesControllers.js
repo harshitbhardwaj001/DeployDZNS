@@ -1,11 +1,48 @@
+import { S3Client } from "@aws-sdk/client-s3";
 import { PrismaClient } from "@prisma/client";
 import { existsSync, renameSync, unlinkSync } from "fs";
+
+const bucketName = "dzns-ecommerce";
+
+const s3Client = new S3Client({
+  region: "ap-south-1",
+  credentials: {
+    accessKeyId: process.env.S3_ACCESS_KEY,
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  },
+});
 
 export const addServices = async (req, res, next) => {
   try {
     if (req.files) {
-      // const fileKeys = Object.keys(req.file);
-      const fileNames = req.files.map((file) => req.s3Link[file.fieldname]);
+      const fileKeys = Object.keys(req.files);
+      const fileNames = [];
+
+      for (const fileKey of fileKeys) {
+        const file = req.files[fileKey];
+
+        try {
+          const ext = file.originalFilename.split(".").pop();
+          const newFilename = Date.now() + "." + ext;
+
+          await s3Client.send(
+            new PutObjectCommand({
+              Bucket: bucketName,
+              Key: newFilename,
+              Body: fs.readFileSync(file.path),
+              ACL: "public-read",
+              ContentType: mime.lookup(file.path),
+            })
+          );
+
+          const link = `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
+          fileNames.push(link);
+        } catch (error) {
+          console.error(error);
+          return res.status(500).send("Internal Server Error");
+        }
+      }
+
       if (req.query) {
         const {
           title,
@@ -17,8 +54,6 @@ export const addServices = async (req, res, next) => {
           time,
           shortDesc,
         } = req.query;
-
-        const prisma = new PrismaClient();
 
         await prisma.services.create({
           data: {
@@ -38,6 +73,7 @@ export const addServices = async (req, res, next) => {
         return res.status(201).send("Successfully created the service.");
       }
     }
+
     return res.status(400).send("All properties should be required.");
   } catch (err) {
     console.log(err);

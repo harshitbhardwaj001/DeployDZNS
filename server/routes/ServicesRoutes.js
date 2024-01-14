@@ -14,12 +14,7 @@ export const servicesRoutes = Router();
 
 // const upload = multer({ dest: "uploads/" });
 
-servicesRoutes.post(
-  "/add",
-  verifyToken,
-  uploadUserMiddleware("images"),
-  addServices
-);
+servicesRoutes.post("/add", verifyToken, addServices);
 servicesRoutes.get("/get-user-services", verifyToken, getUserAuthServices);
 servicesRoutes.get("/get-service-data/:serviceId", getServiceData);
 servicesRoutes.put(
