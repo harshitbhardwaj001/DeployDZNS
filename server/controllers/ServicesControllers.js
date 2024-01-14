@@ -2,6 +2,7 @@ import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { PrismaClient } from "@prisma/client";
 import { existsSync, renameSync, unlinkSync } from "fs";
 import fs from "fs";
+import mime from "mime-types";
 
 const bucketName = "dzns-ecommerce";
 
@@ -16,32 +17,31 @@ const s3Client = new S3Client({
 export const addServices = async (req, res, next) => {
   try {
     if (req.files && req.userId) {
-      const fileKeys = Object.keys(req.files);
-      const fileNames = [];
+      const files = req.files;
+      const fileNames = []
 
-      for (const fileKey of fileKeys) {
-        const file = req.files[fileKey];
+      try {
+        fileNames.push(await Promise.all(
+          files.map(async (file) => {
+            const ext = file.originalname.split(".").pop();
+            const newFilename = Date.now() + "." + ext;
 
-        try {
-          const ext = file.originalFilename.split(".").pop();
-          const newFilename = Date.now() + "." + ext;
+            await s3Client.send(
+              new PutObjectCommand({
+                Bucket: "your-s3-bucket-name",
+                Key: newFilename,
+                Body: file.buffer,
+                ContentType: file.mimetype,
+                ACL: "public-read",
+              })
+            );
 
-          await s3Client.send(
-            new PutObjectCommand({
-              Bucket: bucketName,
-              Key: newFilename,
-              Body: fs.readFileSync(file.path),
-              ACL: "public-read",
-              ContentType: mime.lookup(file.path),
-            })
-          );
-
-          const link = `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
-          fileNames.push(link);
-        } catch (error) {
-          console.error(error);
-          return res.status(500).send("Internal Server Error");
-        }
+            return `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
+          }))
+        );
+      } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal Server Error");
       }
 
       if (req.query) {
