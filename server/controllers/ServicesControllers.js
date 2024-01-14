@@ -16,7 +16,7 @@ const s3Client = new S3Client({
 
 export const addServices = async (req, res, next) => {
   try {
-    if (req.files && req.userId) {
+    if (req.files) {
       const files = req.files;
 
       const fileNames = await Promise.all(
