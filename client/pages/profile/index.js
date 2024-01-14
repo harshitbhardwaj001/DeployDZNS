@@ -81,7 +81,7 @@ const index = () => {
               "Content-Type": "multipart/form-data",
             },
           });
-          imageName = img[0];
+          imageName = img;
         }
         setImage(imageName);
         dispatch({

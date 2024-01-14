@@ -1,7 +1,6 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { PrismaClient } from "@prisma/client";
 import { existsSync, renameSync, unlinkSync } from "fs";
-import multiparty from "multiparty";
 import fs from "fs";
 import mime from "mime-types";
 
@@ -17,45 +16,35 @@ const s3Client = new S3Client({
 
 export const addServices = async (req, res, next) => {
   try {
-    const client = new S3Client({
-      region: "ap-south-1",
-      credentials: {
-        accessKeyId: process.env.S3_ACCESS_KEY,
-        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-      },
-    });
+    console.log(req.files);
     if (req.files) {
       const fileNames = [];
-      const form = new multiparty.Form();
-      form.parse(req, async (err, fields, files) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send("Internal Server Error");
-        }
+      const files = req.files;
+      console.log(files);
 
-        for (const file of files["images"]) {
+      await Promise.all(
+        files.map(async (file) => {
+          const ext = file.originalname.split(".").pop();
+          const newFilename = Date.now() + "." + ext;
+
           try {
-            const ext = file.originalFilename.split(".").pop();
-            const newFilename = Date.now() + "." + ext;
-
-            await client.send(
+            await s3Client.send(
               new PutObjectCommand({
                 Bucket: bucketName,
                 Key: newFilename,
-                Body: fs.readFileSync(file.path),
+                Body: file.buffer,
+                ContentType: file.mimetype,
                 ACL: "public-read",
-                ContentType: mime.lookup(file.path),
               })
             );
 
             const link = `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
             fileNames.push(link);
-          } catch (error) {
-            console.error(error);
-            return res.status(500).send("Internal Server Error");
+          } catch (err) {
+            console.log(err);
           }
-        }
-      });
+        })
+      );
 
       if (req.query) {
         const {
