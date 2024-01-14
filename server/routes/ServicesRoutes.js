@@ -16,7 +16,7 @@ export const servicesRoutes = Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-servicesRoutes.post("/add", verifyToken, upload.single("images"), addServices);
+servicesRoutes.post("/add", verifyToken, addServices);
 servicesRoutes.get("/get-user-services", verifyToken, getUserAuthServices);
 servicesRoutes.get("/get-service-data/:serviceId", getServiceData);
 servicesRoutes.put(
