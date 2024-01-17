@@ -9,7 +9,7 @@ const About = () => {
         <h1 className="w-full overflow-hidden text-[#F4FF00] text-center lg:ml-[0rem] text-6xl font-black md:text-[60px] sm:text-[50px] xs:text-[25px] xs:max-md:text-center text-[30px]">
           What is DZNS Studio?
         </h1>
-        <p className="about font-semibold w-[70vw] text-[1.3vw] ml-[14.2rem] xs:max-md:ml-[2rem] xs:max-md:text-[3vw] text-center xs:max-md:w-[80vw] mt-[3rem]">
+        <p className="about font-semibold w-[70vw] text-[1.3vw] ml-[14.2rem] xs:max-md:ml-[2rem] xs:max-md:text-[3vw] text-center xs:max-md:w-[80vw] mt-[3rem] xxl:ml-[24rem]">
           DZNS Studio alludes to one big creative family of designers who aim to
           accomplish the highest standard of products and designs in the utmost
           creative and intricate manner. DZNS Studio's vision of providing
