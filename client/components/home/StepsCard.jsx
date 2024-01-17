@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import ScrollTrigger from gsap
+import { useCookies } from "react-cookie";
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const StepsCard = () => {
+  const [cookies] = useCookies();
   useEffect(() => {
-    gsap.delayedCall(6.5, () => {
+    gsap.delayedCall(!cookies.hasVisited ? 6.5 : 0, () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: "#steps",

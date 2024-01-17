@@ -10,23 +10,35 @@ import LaunchTeaser from "../components/LaunchTeaser";
 import About from "../components/home/About";
 import Flowchart from "../components/home/Flowchart";
 import StepsCard from "../components/home/StepsCard";
+import { useCookies } from "react-cookie";
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
+  const [cookies, setCookies] = useCookies("hasVisited");
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    const tl = gsap.timeline();
+    const hasVisitedBefore = cookies.hasVisited;
+    if (!hasVisitedBefore) {
+      setIsLoading(true);
+      const tl = gsap.timeline();
 
-    tl.to(".Nav", {
-      // autoAlpha: 1, // Show the Nav div
-      display: "block",
-      opacity: 1,
-      delay: 6.5, // Set the duration of the animation
-    });
-    // tl.to("Nav", {
-    //   delay: 0.2,
-    // });
+      tl.to(".Nav", {
+        // autoAlpha: 1, // Show the Nav div
+        display: "block",
+        opacity: 1,
+        delay: 6.5, // Set the duration of the animation
+      });
+      // tl.to("Nav", {
+      //   delay: 0.2,
+      // });
+      const expirationDate = new Date();
+      expirationDate.setTime(expirationDate.getTime() + 10 * 60 * 1000); // 10 minutes in milliseconds
 
-    gsap.delayedCall(6.5, () => {
+      setCookies("hasVisited", "true", { expires: expirationDate });
+    }
+
+    gsap.delayedCall(isLoading ? 6.5 : 0, () => {
       const tl1 = gsap.timeline({
         scrollTrigger: {
           trigger: "#bgChange",
@@ -54,11 +66,17 @@ export default function Home() {
         <main id="pageMain" className="bg-[#3E2A3E]">
           {/* <LaunchTeaser /> */}
 
-          <div className="overflow-hidden fixed h-full w-full">
-            <Loader />
-          </div>
+          {isLoading && (
+            <div className="block overflow-hidden fixed h-full w-full">
+              <Loader />
+            </div>
+          )}
 
-          <div className="Nav h-full w-full hidden opacity-0">
+          <div
+            className={`Nav h-full w-full ${
+              isLoading ? "hidden opacity-0" : ""
+            }`}
+          >
             <div className="overflow-hidden h-full w-full z-[3]">
               <Navbar clicked={clicked} setClicked={setClicked} />
             </div>
@@ -81,8 +99,8 @@ export default function Home() {
               </div>
             </div>
             <div className="relative z-[5]">
-            <Sound />
-          </div>
+              <Sound />
+            </div>
           </div>
         </main>
       </div>

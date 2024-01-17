@@ -66,7 +66,7 @@ const Services = () => {
                   Coming Soon
                 </div>
                 <div className="absolute z-10 right-5 text-xl font-medium top-[22.5rem] xs:max-md:text-[1.1em] xs:max-md:top-[8rem] xs:max-md:right-[0.7rem]">
-                  16-01-24
+                  20-01-24
                 </div>
               </>
             )}
