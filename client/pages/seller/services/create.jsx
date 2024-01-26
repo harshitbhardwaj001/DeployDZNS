@@ -7,6 +7,7 @@ import axios from "axios";
 import { ADD_SERVICE_ROUTE } from "../../../utils/constants";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
+import Head from "next/head";
 
 const create = () => {
   const [cookies] = useCookies();
@@ -31,7 +32,7 @@ const create = () => {
   const inputClassName =
     "block p-4 w-full text-white text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-500 focus:ring-blue-500 focus:border-blue-500 ";
   const labelClassName =
-    "mb-2 text-lg font-medium text-gray-900 dark:text-white";
+    "mb-2 text-lg font-medium text-gray-900 dark:text-white xs:max-md:text-[0.8rem]";
 
   const addFeature = () => {
     if (data.feature) {
@@ -90,18 +91,21 @@ const create = () => {
 
   return (
     <>
-      <div className="nav overflow-hidden fixed h-full w-full">
+      <Head>
+        <title>Create Service | DZNS Studio</title>
+      </Head>
+      <div className="nav overflow-hidden h-full w-full">
         <Navbar clicked={clicked} setClicked={setClicked} />
       </div>
       <div className={`${clicked ? "hidden" : "block"}`}>
-        <div className="min-h-[80vh] relative my-10 mt-0 top-[10rem] px-32">
-          <h1 className="text-4xl text-white mb-3 w-full">
+        <div className="min-h-[80vh] relative my-10 mt-0 top-[10rem] px-32 xs:max-md:px-5">
+          <h1 className="text-4xl text-white mb-3 w-full xs:max-md:text-2xl xs:max-md:text-center">
             Create a new Service
           </h1>
-          <h3 className="text-xl text-white mb-5 w-full">
+          <h3 className="text-xl text-white mb-5 w-full xs:max-md:text-sm xs:max-md:text-center">
             Enter the details to create the service.
           </h3>
-          <div className="flex flex-col gap-5 mt-10">
+          <div className="flex flex-col gap-5 mt-10 xs:max-md:justify-center">
             <div className="grid grid-cols-2 gap-11">
               <div>
                 <label htmlFor="title" className={labelClassName}>
@@ -182,7 +186,7 @@ const create = () => {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-11">
+            <div className="grid grid-cols-2 gap-11 xs:max-md:grid-cols-1 xs:max-md:gap-3">
               <div>
                 <label htmlFor="features" className={labelClassName}>
                   Service Features
@@ -266,7 +270,7 @@ const create = () => {
             </div>
             <div>
               <button
-                className="border text-lg font-semibold px-5 py-3 z-[10] border-[#F4FF00] bg-[#F4FF00] text-black rounded-md"
+                className="border text-lg font-semibold px-5 py-3 z-[10] border-[#F4FF00] bg-[#F4FF00] text-black rounded-md xs:max-md:px-[7.2rem] xs:max-md:mt-[2rem]"
                 type="button"
                 onClick={addService}
               >

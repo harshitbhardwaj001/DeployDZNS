@@ -7,7 +7,7 @@ const index = () => {
 
   return (
     <>
-      <div className="nav overflow-hidden fixed h-full w-full">
+      <div className="nav overflow-hidden h-full w-full">
         <Navbar clicked={clicked} setClicked={setClicked} />
       </div>
       <div className={`${clicked ? "hidden" : "block"}`}>

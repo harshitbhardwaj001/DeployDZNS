@@ -28,7 +28,7 @@ export default function Home() {
         display: "block",
         opacity: 1,
         delay: 6.5, // Set the duration of the animation
-      });
+      });  
       // tl.to("Nav", {
       //   delay: 0.2,
       // });

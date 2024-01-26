@@ -5,6 +5,7 @@ import { useStateProvider } from "../../../context/StateContext";
 import axios from "axios";
 import { GET_SELLER_ORDERS_ROUTE } from "../../../utils/constants";
 import Link from "next/link";
+import Head from "next/head";
 
 function index() {
   const [clicked, setClicked] = useState(false);
@@ -33,6 +34,9 @@ function index() {
 
   return (
     <>
+      <Head>
+        <title>Seller Orders | DZNS Studio</title>
+      </Head>
       <div className="nav overflow-hidden fixed h-full w-full">
         <Navbar clicked={clicked} setClicked={setClicked} />
       </div>
