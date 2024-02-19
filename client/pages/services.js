@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import emailjs from "@emailjs/browser";
+import Head from "next/head";
 
 const service = () => {
   const [clicked, setClicked] = useState(false);
@@ -33,6 +34,9 @@ const service = () => {
         <Navbar clicked={clicked} setClicked={setClicked} />
       </div>
       <div className={`${clicked ? "hidden" : "block"} overflow-hidden`}>
+        <Head>
+          <title>DZNS Studio - Contact</title>
+        </Head>
         <div className="bg-services-bg w-[100vw] h-[100vh] bg-cover bg-no-repeat opacity-[0.03]"></div>
         <div className="absolute w-[80%] h-[80%] bg-black bg-opacity-50 xl:left-[10rem] top-[8rem] left-[15.5rem] rounded-xl flex xs:max-md:flex-col xs:max-md:left-[2rem] xs:max-md:h-auto">
           <h1 className="w-[49%] text-[12rem] xl:text-[6.2rem] p-[4rem] pl-[5rem] font-black text-white opacity-100 xs:max-md:text-[2rem] xs:max-md:w-full xs:max-md:p-[1rem] xs:max-md:text-center">
