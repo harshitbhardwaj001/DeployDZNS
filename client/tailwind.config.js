@@ -57,6 +57,7 @@ module.exports = {
         "game-bg": "url(/bgDino.jpg)",
         "landing-bg": "url(/landingbg.jpg)",
         "home-bg": "url(/landingvid.gif)",
+        "services-bg": "url(/home.gif)",
         "background-bg": "url(/background.gif)",
       },
     },

@@ -208,7 +208,7 @@ const Navbar = ({ clicked, setClicked }) => {
                 <div className="menu-item-revealer"></div>
               </div>
               <div className="menu-item">
-                <a href="/shop">
+                <a href="/services">
                   <span>III</span>Shop
                 </a>
                 <div className="menu-item-revealer"></div>

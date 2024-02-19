@@ -4,7 +4,10 @@ import about from "../../public/about.png";
 
 const About = () => {
   return (
-    <div className="w-[99vw] h-[80vh] flex gap-2 xs:max-md:flex-col" id="about">
+    <div
+      className="w-[99vw] h-[80vh] flex gap-2 xs:max-md:flex-col overflow-hidden"
+      id="about"
+    >
       <div className="w-full lg:grow justify-center mt-[8rem] z-[20]">
         <h1 className="w-full overflow-hidden text-[#F4FF00] text-center lg:ml-[0rem] text-6xl font-black md:text-[60px] sm:text-[50px] xs:text-[25px] xs:max-md:text-center text-[30px]">
           What is DZNS Studio?

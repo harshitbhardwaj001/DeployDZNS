@@ -37,7 +37,7 @@ const Services = () => {
     },
   ];
   return (
-    <div className="mx-20 my-16 flex flex-col items-center">
+    <div className="mx-20 my-16 flex flex-col items-center overflow-hidden">
       <h2 className="text-5xl mb-20 w-[356px] xs:max-md:w-[170px] xs:max-md:text-2xl text-white font-extrabold">
         Our Services
       </h2>
@@ -46,10 +46,10 @@ const Services = () => {
           <li
             key={name}
             className="relative z-[5] cursor-pointer"
-            // onClick={() =>
-            //   name !== "PACKAGE" &&
-            //   router.push(`/search?q=${""}&category=${name.toLowerCase()} `)
-            // }
+            onClick={() =>
+              name !== "PACKAGE" &&
+              router.push(`/search?q=${""}&category=${name.toLowerCase()} `)
+            }
           >
             <div className="absolute z-10 text-white left-5 top-4 xs:max-md:left-3">
               <span className="text-[1.2rem] xs:max-md:text-[0.6rem]">

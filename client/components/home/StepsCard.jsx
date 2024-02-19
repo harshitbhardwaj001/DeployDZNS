@@ -425,7 +425,7 @@ const StepsCard = () => {
     });
   }, []);
   return (
-    <div id="steps">
+    <div id="steps" className="overflow-hiddenb ">
       <div className="textSteps">
         <p className="text-2xl">Do you want to know</p>
         <h1 className="w-full flex justify-center text-6xl font-bold">

@@ -56,7 +56,7 @@ const Steps = () => {
     <>
       <motion.div
         variants={textVariant()}
-        className="mt-[120px] xs:max-md:mt-[20px]"
+        className="mt-[120px] xs:max-md:mt-[20px] overflow-hidden"
       >
         <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider text-center">
           Do you want to know
