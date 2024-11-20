@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('/fonts/coolvetica.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -795,6 +802,12 @@
     font-family: "Raleway";
     font-weight: 500;
     font-size: 36px;
+  }
+
+  .closer {
+    font-family: "Coolvetica", sans-serif;
+    font-weight: 400;
+    /* font-size: 44px; */
   }
 
   .secondary-menu .menu-container .wrapper:nth-child(1) {
