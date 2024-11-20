@@ -17,11 +17,14 @@ config();
 const app = express();
 const port = process.env.PORT || 9001;
 
+console.log("CORS Allowed Origin:", process.env.PUBLIC_URL);
+
 app.use(
   cors({
-    origin: [process.env.PUBLIC_URL],
+    origin: [process.env.PUBLIC_URL], // Explicitly allow your frontend origin
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    credentials: true,
+    credentials: true, // Allow cookies and credentials
+    allowedHeaders: ["Content-Type", "Authorization"], // Add any additional headers your frontend sends
   })
 );
 
@@ -30,7 +33,10 @@ app.use(express.urlencoded({ extended: true })); // For URL-encoded data
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("DATABASE CONNECTED SUCCESSFULLY"))
   .catch((err) => {
     console.error("Error connecting to database:", err);
