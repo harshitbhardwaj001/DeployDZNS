@@ -797,6 +797,12 @@
     font-size: 36px;
   }
 
+  .closer {
+    font-family: "Coolvetica";
+    font-weight: 400;
+    font-size: 48px;
+  }
+
   .secondary-menu .menu-container .wrapper:nth-child(1) {
     display: flex;
     flex-direction: column;

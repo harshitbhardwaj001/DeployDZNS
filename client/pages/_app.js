@@ -1,3 +1,4 @@
+import { HeroSection } from '../components/HeroSection';
 import { StateProvider } from '../context/StateContext';
 import reducer, { initialeState } from '../context/StateReducers';
 import '../styles/globals.css'
@@ -8,7 +9,7 @@ gsap.registerPlugin(CSSPlugin, CSSRulePlugin)
 export default function App({ Component, pageProps }) {
   return (
     <StateProvider initialState={initialeState} reducer={reducer}>
-      <Component {...pageProps} />
+      <HeroSection/>
     </StateProvider>
   )
 }

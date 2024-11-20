@@ -24,6 +24,7 @@ module.exports = {
       fontFamily: {
         raleway: ["Raleway", "sans-serif"],
         bebas: ["Bebas", "sans-serif"],
+        coolvetica: ["Coolvetica", "sans-serif"]
       },
       screens: {
         xs: "250px",
